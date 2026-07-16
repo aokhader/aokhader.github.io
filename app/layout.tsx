@@ -1,34 +1,32 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Figtree } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { site } from "@/data";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-const serifAccent = Instrument_Serif({
-  weight: "400",
-  style: ["normal", "italic"],
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-serif-accent",
+  weight: ["500", "700", "800"],
+  variable: "--font-bricolage",
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+});
+const figtree = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-figtree",
 });
 
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
-  description: `${site.headline}. ${site.subhead}`,
+  description: site.tagline,
   openGraph: {
     title: `${site.name} — ${site.role}`,
-    description: site.subhead,
+    description: site.tagline,
     type: "website",
   },
 };
@@ -41,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${serifAccent.variable} antialiased`}
+        className={`${bricolage.variable} ${plexMono.variable} ${figtree.variable} antialiased`}
       >
         <SmoothScroll />
         {children}

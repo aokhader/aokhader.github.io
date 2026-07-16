@@ -10,8 +10,8 @@ export function SmoothScroll() {
 
     const lenis = new Lenis({
       duration: 1.1,
-      // Match the sections' scroll-mt-28 so anchor jumps clear the fixed nav.
-      anchors: { offset: -112 },
+      // Nav scrolls with the page; a small offset just adds breathing room.
+      anchors: { offset: -24 },
     });
 
     let frame = requestAnimationFrame(function loop(time) {

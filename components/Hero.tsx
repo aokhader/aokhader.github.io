@@ -1,95 +1,65 @@
-import { FiArrowUpRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import { BlurFade } from "./ui/blur-fade";
-import { GraphBg } from "./ui/graph-bg";
-import { Spotlight } from "./ui/spotlight";
-import { TypedLine } from "./ui/typed-line";
-import { WordRotate } from "./ui/word-rotate";
+import { CopyEmail } from "./ui/copy-email";
+import { Yoyo } from "./ui/yoyo";
 import { site } from "@/data";
 
 const Hero = () => {
   return (
-    <div className="relative flex min-h-svh items-center pt-16">
-      <Spotlight id="spot-gold" className="-left-10 -top-40 md:-left-32 md:-top-20" fill="#e7b44c" />
-      <Spotlight id="spot-navy" className="left-[45%] top-10 h-[120%]" fill="#3d5a8f" />
-      <GraphBg />
+    <header className="mx-auto grid max-w-[1240px] items-start gap-10 px-5 pb-16 pt-12 sm:px-14 md:grid-cols-[1.25fr_1fr]">
+      <BlurFade>
+        <div className="mb-4 font-mono text-[13px] text-olive">{site.heroEyebrow}</div>
 
-      <div className="relative z-10 max-w-3xl pb-16">
-        <BlurFade delay={0.05}>
-          <TypedLine
-            text={site.motto}
-            className="font-mono text-xs tracking-wide text-faint sm:text-sm"
-          />
-        </BlurFade>
+        <h1 className="mb-[18px] font-display text-[52px] font-extrabold leading-[0.98] tracking-[-0.02em] sm:text-[64px] md:text-[76px]">
+          Abdulaziz
+          <br />
+          Khader
+        </h1>
 
-        <BlurFade delay={0.15}>
-          <h1 className="mt-6 text-5xl font-semibold tracking-tight text-fg sm:text-6xl md:text-7xl">
-            {site.name}
-          </h1>
-        </BlurFade>
+        <p className="mb-3.5 max-w-[520px] text-[19px] leading-[1.55]">
+          ML engineer who ships the whole stack — from enterprise AIOps agents at
+          BMC down to a 360M-parameter LLM answering questions{" "}
+          <em>offline on an Arduino</em>.
+        </p>
 
-        <BlurFade delay={0.25}>
-          <p className="mt-6 text-2xl leading-snug text-fg/90 sm:text-3xl">
-            I build software that makes{" "}
-            <WordRotate
-              phrases={[
-                <span key="algorithms">
-                  <em className="font-serif italic text-accent">algorithms</em> visible.
-                </span>,
-                <span key="models">
-                  <em className="font-serif italic text-accent">models</em> useful.
-                </span>,
-                <span key="ideas">
-                  <em className="font-serif italic text-accent">ideas</em> real.
-                </span>,
-              ]}
-            />
-          </p>
-        </BlurFade>
+        <div className="mb-6 font-mono text-[13px] leading-[2] text-muted">
+          ROLE: <span className="font-semibold text-ink">{site.meta.role}</span>
+          <br />
+          EDUCATION: <span className="font-semibold text-ink">{site.meta.education}</span>
+          <br />
+          STATUS: <span className="font-semibold text-olive">{site.meta.status}</span>
+        </div>
 
-        <BlurFade delay={0.35}>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            {site.subhead}
-          </p>
-        </BlurFade>
+        <div className="flex flex-wrap items-center gap-3.5">
+          <a
+            href={`mailto:${site.email}`}
+            className="nb-btn nb-btn-lg bg-orange px-5 py-3 text-[14px] text-cream no-underline"
+          >
+            {site.email}
+          </a>
+          <CopyEmail className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink" />
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink no-underline"
+          >
+            GITHUB ↗
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink no-underline"
+          >
+            LINKEDIN ↗
+          </a>
+        </div>
+      </BlurFade>
 
-        <BlurFade delay={0.45}>
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line
-              bg-surface/60 px-4 py-2 text-sm text-fg transition-colors hover:border-faint"
-            >
-              <FiGithub aria-hidden="true" />
-              GitHub
-              <FiArrowUpRight aria-hidden="true" className="text-faint" />
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line
-              bg-surface/60 px-4 py-2 text-sm text-fg transition-colors hover:border-faint"
-            >
-              <FiLinkedin aria-hidden="true" />
-              LinkedIn
-              <FiArrowUpRight aria-hidden="true" className="text-faint" />
-            </a>
-            <a
-              href={`mailto:${site.email}`}
-              className="px-1 font-mono text-sm text-muted transition-colors hover:text-accent"
-            >
-              {site.email}
-            </a>
-          </div>
-        </BlurFade>
-
-        <BlurFade delay={0.55}>
-          <p className="mt-6 font-mono text-xs text-faint">{site.location}</p>
-        </BlurFade>
+      <div className="justify-self-center">
+        <Yoyo />
       </div>
-    </div>
+    </header>
   );
 };
 

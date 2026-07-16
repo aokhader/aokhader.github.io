@@ -1,195 +1,168 @@
-// Single source of truth for all site content.
-// Sourced from Abdulaziz's resume (July 2026) + earlier roles kept from LinkedIn.
+// Single source of truth for all site content — "Player Two, hybrid" (3a).
 
 export const site = {
   name: "Abdulaziz Khader",
-  firstName: "Abdulaziz",
-  role: "Software Engineer",
-  headline: "I build software that makes algorithms visible",
-  subhead:
-    "Computer Engineering at UC San Diego, building machine-learning systems that ship — from enterprise LLM tooling to models running offline on edge hardware.",
-  motto: "build some. break some more. repeat.",
+  role: "ML / Full-stack Engineer",
+  tagline:
+    "ML engineer who ships the whole stack — from enterprise AIOps agents at BMC down to a 360M-parameter LLM answering questions offline on an Arduino.",
+  heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN DIEGO, CA",
   location: "San Diego, CA",
   email: "akhader@ucsd.edu",
   resumeUrl: "/resume.pdf",
   github: "https://github.com/aokhader",
   linkedin: "https://www.linkedin.com/in/abdulaziz-khader/",
+  meta: {
+    role: "ML / Full-stack Engineer",
+    education: "UC San Diego — Computer Engineering '26, math minor",
+    status: "OPEN TO NEW-GRAD ROLES · JUNE 2026",
+  },
+  marquee: "BUILD SOME ★ BREAK SOME MORE ★ REPEAT ★ CLOUD TO ARDUINO ★ NO TUTORIALS WERE FOLLOWED ★",
 };
 
 export const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "EXPERIENCE", href: "#experience" },
+  { name: "PROJECTS", href: "#projects" },
+  { name: "SKILLS", href: "#skills" },
+  { name: "OFF HOURS", href: "#offhours" },
+  { name: "CONTACT", href: "#contact" },
 ];
 
 export type Experience = {
+  meta: string;
   company: string;
   title: string;
-  dates: string;
-  location?: string;
-  current?: boolean;
-  bullets: string[];
-  link?: string;
+  desc: string;
+  metrics: string[];
 };
 
 export const experiences: Experience[] = [
   {
+    meta: "JUN–AUG 2025 · SANTA CLARA, CA",
     company: "BMC Software",
-    title: "Software Engineering Intern",
-    dates: "Jun 2025 — Aug 2025",
-    location: "Santa Clara, CA",
-    bullets: [
-      "Created an AIOps tool that integrates customers' ServiceNow data with BMC's existing products into a universal hub — a 17%+ projected revenue increase and 100,000+ expected new users.",
-      "Used LangChain and LangGraph to process customer databases through CRUD tools over ServiceNow's REST API; hosted and optimized an ASGI web server for 60% faster real-time updates.",
-      "Built a semantic model to dynamically parse data configurations, redesigning 1,000+ lines of code into a tool factory that extends to other products such as Salesforce.",
-    ],
+    title: "SWE Intern",
+    desc: "Built an AIOps hub folding customers' ServiceNow data into BMC's product line — LangChain/LangGraph CRUD tooling over the REST API, an ASGI server pushing real-time updates, and 1000+ lines refactored into a reusable tool factory.",
+    metrics: ["+17% projected revenue", "+100K expected users", "60% faster updates"],
   },
   {
-    company: "Product Manager Accelerator",
-    title: "Software Engineering Intern",
-    dates: "Sep 2024 — Dec 2024",
-    location: "Remote",
-    bullets: [
-      "Built a full-stack web app integrating reinforcement learning with a scalable database to evaluate chess games and surface move patterns and historical trends.",
-      "Integrated frontend workflows with Flask REST APIs, LangChain, and Google Gemini for seamless delivery of chess insights, improving analysis response time.",
-      "Deployed a Supabase database of chess positions, cutting duplicate lookups and retrieval latency by 40%.",
-    ],
-    link: "https://github.com/aokhader/chessmate",
+    meta: "SEP–DEC 2024 · REMOTE",
+    company: "PM Accelerator",
+    title: "SWE Intern",
+    desc: "Full-stack chess coach: reinforcement learning evaluates your games and surfaces recurring mistakes, served through Flask REST APIs + Gemini with a Supabase position store.",
+    metrics: ["−40% retrieval latency", "RL + Gemini insights"],
   },
   {
+    meta: "AUG–DEC 2024 · REMOTE",
     company: "Ocelot",
     title: "AI Studio Fellow",
-    dates: "Aug 2024 — Dec 2024",
-    location: "Remote",
-    bullets: [
-      "Improved tone accuracy 30% over a GPT-2 baseline by building a sentiment-conditioned LLM for student mental-health conversations, scoring 4.1/5.0 on appropriateness in human evaluation.",
-      "Cut a 7B-parameter model's memory footprint from 14 GB to 3.5 GB with 4-bit quantization while preserving 98% model quality, enabling real-time inference on local hardware via Gradio.",
-      "Accelerated the development cycle 82% through CUDA optimization — training from 8 hours down to 30 minutes across 5,600+ multi-domain samples with a stratified evaluation framework.",
-    ],
-    link: "https://github.com/aokhader/OcelotBot",
+    desc: "Sentiment-conditioned LLM for student mental-health conversations — +30% tone accuracy over GPT-2, 4.1/5 human eval. Quantized a 7B model to 4-bit for real-time local inference.",
+    metrics: ["14 GB → 3.5 GB", "training 8 h → 30 min (CUDA)"],
   },
   {
-    company: "Break Through Tech AI at UCLA",
-    title: "AI Fellow",
-    dates: "2023 — 2024",
-    bullets: [
-      "Implemented machine and deep learning models, including CNNs and ensemble methods, through an industry-partnered AI studio program.",
-    ],
-  },
-  {
+    meta: "UC SAN DIEGO · CSE · ONGOING",
     company: "UC San Diego",
     title: "Instructional Assistant",
-    dates: "2023 — 2024",
-    bullets: [
-      "Assisted in the instruction and assessment of 800+ students in advanced topics using C.",
-    ],
+    desc: "Instruction and assessment for 800+ students in advanced systems programming in C — labs, office hours, and the occasional 2am forum answer.",
+    metrics: ["labs · office hours · grading"],
   },
 ];
 
 export type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  dates?: string;
-  award?: string;
-  featured?: boolean;
-  repo?: string;
-  live?: string;
-  image?: string;
+  name: string;
+  meta: string;
+  desc: string;
+  tags: string[];
+  code: string;
 };
 
-export const projects: Project[] = [
+export const featuredProjects: Project[] = [
   {
-    title: "RoboRanger",
-    award: "Best Edge AI & ElevenLabs Award",
-    featured: true,
-    dates: "Apr 2026 — Present",
-    description:
-      "A fully offline field guide on an Arduino Uno Q: a MobileNetV3 image classifier paired with a quantized SmolLM2-360M LLM and a RAG pipeline over sqlite-vec — everything under 1B parameters on the edge, with an LLM-assisted data curation pipeline and a networked ElevenLabs voice fallback.",
-    tech: ["Python", "C++", "TFLite", "llama.cpp", "RAG"],
-    repo: "https://github.com/aokhader/RoboRanger",
+    name: "RoboRanger",
+    meta: "APR 2026–PRESENT · ★ BEST EDGE AI & ELEVENLABS AWARD",
+    desc: "A fully offline field guide on an Arduino Uno Q: MobileNetV3 vision + a quantized SmolLM2-360M via llama.cpp, RAG over sqlite-vec with similarity gating against hallucinations. Borrows an ElevenLabs voice when Wi-Fi appears.",
+    tags: ["Python", "C++", "TFLite", "llama.cpp"],
+    code: "https://github.com/aokhader/RoboRanger",
   },
   {
-    title: "YouPresent",
-    award: "Presented at AWE XR 2025",
-    featured: true,
-    dates: "Apr 2025 — Feb 2026",
-    description:
-      "A Unity VR app for practicing public speaking: Google Gemini analyzes gaze, hand motion, and delivery in real time, and an AI-driven coach with a rigged, reactive audience turns it into personalized feedback — including recordings with your own speaker avatar.",
-    tech: ["Unity", "C#", "Meta XR", "Google Gemini"],
-  },
-  {
-    title: "Visual Graph Algorithms",
-    description:
-      "Graph algorithms such as BFS and strongly connected components, implemented in C++ and visualized step by step in the browser.",
-    tech: ["C++", "React", "TypeScript"],
-    repo: "https://github.com/aokhader/GraphAlgorithms",
-    image: "/Graphs_2.png",
-  },
-  {
-    title: "DevJournal",
-    description:
-      "Full-stack developer journal for tracking daily progress, with tasks and action items surfaced in a calendar view.",
-    tech: ["JavaScript", "HTML", "CSS", "Figma"],
-    repo: "https://github.com/cse110-sp24-group21/cse110-sp24-group21",
-    image: "/DevJournal.png",
-  },
-  {
-    title: "Huffman Coding Encryption",
-    description:
-      "File compression and encryption with the Huffman coding algorithm — up to 25% less space on smaller files.",
-    tech: ["C++", "Algorithms"],
-    image: "/Huffman.png",
-  },
-  {
-    title: "YouTubeOffline",
-    description:
-      "Command-line YouTube video downloader built with PyTube and MoviePy — pass links in a text file or straight into the terminal.",
-    tech: ["Python", "PyTube", "MoviePy"],
-    repo: "https://github.com/aokhader/YouTubeOffLine",
-    image: "/YTOffline.png",
+    name: "YouPresent",
+    meta: "APR 2025–FEB 2026 · DEMOED AT AWE XR 2025",
+    desc: "A Unity VR stage for public-speaking practice: Gemini reads gaze, hands and delivery in real time while a rigged AI coach — and a politely bored audience — give personalized feedback. Records you as your own avatar.",
+    tags: ["Unity", "C#", "Meta XR", "Gemini"],
+    code: "https://github.com/aokhader",
   },
 ];
 
-export const skillGroups: { label: string; items: string[] }[] = [
+export type EarlierProject = {
+  name: string;
+  desc: string;
+  code: string;
+};
+
+export const earlierProjects: EarlierProject[] = [
   {
-    label: "Languages",
-    items: ["Python", "C/C++", "C#", "Go", "TypeScript", "JavaScript", "Java", "SQL"],
+    name: "Visual Graph Algorithms",
+    desc: "BFS, SCC and friends in C++, animated in the browser",
+    code: "https://github.com/aokhader/GraphAlgorithms",
   },
   {
-    label: "ML & LLMs",
-    items: [
-      "PyTorch",
-      "TensorFlow",
-      "Keras",
-      "LangChain",
-      "LangGraph",
-      "CUDA",
-      "NLTK",
-      "spaCy",
-    ],
+    name: "Huffman Coding",
+    desc: "Compression + encryption in C++ — 25% smaller small files",
+    code: "https://github.com/aokhader/HuffmanCoding",
   },
   {
-    label: "Serving & Edge",
-    items: ["llama.cpp", "Ollama", "vLLM", "FastAPI", "TFLite"],
+    name: "DevJournal",
+    desc: "Full-stack developer journal + task calendar, team of 10",
+    code: "https://github.com/cse110-sp24-group21/cse110-sp24-group21",
   },
   {
-    label: "Web & Infra",
-    items: ["React", "Next.js", "MySQL", "GCP", "Docker", "Puppeteer"],
+    name: "YouTubeOffline",
+    desc: "CLI YouTube downloader — PyTube + MoviePy",
+    code: "https://github.com/aokhader/YouTubeOffLine",
   },
 ];
 
-export const education = {
-  school: "University of California, San Diego",
-  degree: "B.S. Computer Engineering · Minor in Mathematics",
-  dates: "June 2026 · GPA 3.7/4.0",
-  seal: "/UCSD_Seal.png",
+export type SkillGroup = {
+  label: string;
+  tint: "cream" | "peach" | "olive";
+  items: string[];
 };
 
-export const about = {
-  paragraphs: [
-    "I'm a computer engineering student at UC San Diego (with a math minor) who likes the moment an abstract model becomes something you can use — a chess coach that explains your blunders, a VR audience that reacts to your talk, a field guide answering questions offline from a microcontroller.",
-    "Most recently that meant a summer at BMC Software building LLM-powered AIOps tooling with LangChain and LangGraph. I care about the whole path from model to product: quantization, retrieval, serving, and the application people actually touch.",
-  ],
+export const skillGroups: SkillGroup[] = [
+  {
+    label: "LANGUAGES",
+    tint: "cream",
+    items: ["Python", "C / C++", "TypeScript", "Go", "C#", "Java", "SQL"],
+  },
+  {
+    label: "ML SYSTEMS",
+    tint: "peach",
+    items: ["LangChain / LangGraph", "PyTorch", "TensorFlow / Keras", "CUDA", "llama.cpp / Ollama / vLLM"],
+  },
+  {
+    label: "WEB & INFRA",
+    tint: "olive",
+    items: ["React / Next.js", "FastAPI", "Docker", "GCP", "MySQL"],
+  },
+];
+
+export type OffHour = { name: string; blurb: string };
+
+export const offHours: OffHour[] = [
+  { name: "Reading", blurb: "Perpetually mid-novel. The queue only grows." },
+  { name: "Games", blurb: "Plays them. Builds them. Hence this whole page." },
+  { name: "Soccer", blurb: "Weekend fixture. Midfield, mostly honest tackles." },
+  { name: "Yo-yo", blurb: "String tricks. You met the physics version up top." },
+  { name: "Bo staff", blurb: "Yes, really. Ask for a demo in the interview." },
+];
+
+export const achievements = [
+  "★ Best Edge AI & ElevenLabs award",
+  "★ Demoed at AWE XR 2025",
+  "★ 800+ students taught",
+];
+
+export const contact = {
+  eyebrow: "// CONTACT",
+  heading: "Let’s talk.",
+  copy: "One email gets you an engineer who documents everything, demos on time — and yes, still brings the yo-yo.",
+  footer: "© 2026 ABDULAZIZ KHADER · HANDCRAFTED · NO TUTORIAL WAS FOLLOWED IN THE MAKING OF THIS SITE",
 };

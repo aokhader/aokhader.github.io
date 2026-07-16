@@ -1,56 +1,33 @@
-import { FiArrowUpRight } from "react-icons/fi";
 import { BlurFade } from "./ui/blur-fade";
 import { Section } from "./ui/section";
 import { experiences } from "@/data";
 
 const Experience = () => {
   return (
-    <Section id="experience" eyebrow="Experience" title="Where I've worked">
-      <ol className="relative ml-1.5 space-y-12 border-l border-line pl-8">
+    <Section id="experience" eyebrow="// EXPERIENCE" title="Quests cleared.">
+      <div className="grid gap-6 md:grid-cols-2">
         {experiences.map((role, i) => (
-          <li key={`${role.company}-${role.title}`} className="relative">
-            {/* Node on the timeline edge — current role gets the gold node */}
-            <span
-              aria-hidden="true"
-              className={`absolute -left-[38.5px] top-1.5 h-[9px] w-[9px] rounded-full ${
-                role.current ? "bg-accent" : "bg-edge"
-              }`}
-            />
-            <BlurFade inView delay={i * 0.05}>
-              <p className="font-mono text-xs text-faint">
-                {role.dates}
-                {role.location && ` · ${role.location}`}
-              </p>
-              <h3 className="mt-2 text-lg font-medium text-fg">
-                {role.title}
-                <span className="text-muted">
-                  {" · "}
-                  {role.link ? (
-                    <a
-                      href={role.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-baseline gap-1 transition-colors hover:text-accent"
-                    >
-                      {role.company}
-                      <FiArrowUpRight aria-hidden="true" className="self-center text-xs" />
-                    </a>
-                  ) : (
-                    role.company
-                  )}
-                </span>
+          <BlurFade key={role.company} inView delay={(i % 2) * 0.08}>
+            <div className="nb-card flex h-full flex-col gap-2.5 p-6">
+              <div className="font-mono text-[11.5px] font-semibold text-olive">
+                {role.meta}
+              </div>
+              <h3 className="font-display text-2xl font-bold">
+                {role.company}{" "}
+                <span className="font-medium text-faint">— {role.title}</span>
               </h3>
-              <ul className="mt-3 space-y-2">
-                {role.bullets.map((bullet) => (
-                  <li key={bullet.slice(0, 32)} className="leading-relaxed text-muted">
-                    {bullet}
-                  </li>
+              <p className="text-[14.5px] leading-[1.6]">{role.desc}</p>
+              <div className="mt-auto flex flex-wrap gap-2 pt-1">
+                {role.metrics.map((metric) => (
+                  <span key={metric} className="nb-metric">
+                    {metric}
+                  </span>
                 ))}
-              </ul>
-            </BlurFade>
-          </li>
+              </div>
+            </div>
+          </BlurFade>
         ))}
-      </ol>
+      </div>
     </Section>
   );
 };

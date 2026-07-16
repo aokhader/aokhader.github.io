@@ -1,42 +1,26 @@
 import { BlurFade } from "./blur-fade";
 
-/** An edge terminating in a node — the site's recurring graph glyph. */
-export function NodeGlyph({ className }: { className?: string }) {
-  return (
-    <svg
-      width="22"
-      height="8"
-      viewBox="0 0 22 8"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <line x1="0" y1="4" x2="13" y2="4" stroke="var(--color-edge)" strokeWidth="1.5" />
-      <circle cx="18" cy="4" r="3" fill="var(--color-accent)" />
-    </svg>
-  );
-}
-
 type SectionProps = {
   id: string;
   eyebrow: string;
-  title: React.ReactNode;
+  title: string;
   children: React.ReactNode;
 };
 
+/** Section wrapper: monospace `// EYEBROW` in orange + big display heading. */
 export function Section({ id, eyebrow, title, children }: SectionProps) {
   return (
-    <section id={id} className="scroll-mt-28 py-20 md:py-28">
+    <section
+      id={id}
+      className="mx-auto max-w-[1240px] scroll-mt-6 px-5 pt-16 pb-6 sm:px-14"
+    >
       <BlurFade inView>
-        <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-accent">
-          <NodeGlyph />
-          {eyebrow}
-        </p>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-fg md:text-4xl">
+        <div className="mb-2 font-mono text-[13px] text-orange">{eyebrow}</div>
+        <h2 className="mb-8 font-display text-[32px] font-extrabold md:text-[42px]">
           {title}
         </h2>
       </BlurFade>
-      <div className="mt-12">{children}</div>
+      {children}
     </section>
   );
 }

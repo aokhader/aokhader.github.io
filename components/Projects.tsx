@@ -1,113 +1,77 @@
-import Image from "next/image";
-import { FiArrowUpRight } from "react-icons/fi";
 import { BlurFade } from "./ui/blur-fade";
-import { CardGlow } from "./ui/card-glow";
 import { Section } from "./ui/section";
-import { projects, type Project } from "@/data";
-
-function CardShell({
-  project,
-  className,
-  children,
-}: {
-  project: Project;
-  className: string;
-  children: React.ReactNode;
-}) {
-  const href = project.repo ?? project.live;
-  if (href) {
-    return (
-      <a href={href} target="_blank" rel="noreferrer" className={className}>
-        {children}
-      </a>
-    );
-  }
-  return <div className={className}>{children}</div>;
-}
-
-const cardBase =
-  "group relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface transition-all duration-300 hover:-translate-y-0.5 hover:border-faint";
+import { earlierProjects, featuredProjects } from "@/data";
 
 const Projects = () => {
-  const featured = projects.filter((p) => p.featured);
-  const others = projects.filter((p) => !p.featured);
-
   return (
-    <Section id="projects" eyebrow="Projects" title="Things I've built">
-      <div className="space-y-6">
-        {featured.map((project, i) => (
-          <BlurFade key={project.title} inView delay={i * 0.08}>
-            <CardShell project={project} className={`${cardBase} p-7 md:p-8`}>
-              <CardGlow />
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <h3 className="text-xl font-medium text-fg">{project.title}</h3>
-                {project.award && (
-                  <span
-                    className="rounded-full border border-accent/40 bg-accent/10 px-3
-                    py-0.5 font-mono text-xs text-accent"
-                  >
-                    {project.award}
-                  </span>
-                )}
-                {(project.repo ?? project.live) && (
-                  <FiArrowUpRight
-                    aria-hidden="true"
-                    className="ml-auto shrink-0 text-faint transition-colors group-hover:text-accent"
-                  />
-                )}
+    <Section id="projects" eyebrow="// FEATURED PROJECTS" title="The big ones.">
+      <div className="grid gap-6 md:grid-cols-2">
+        {featuredProjects.map((project, i) => (
+          <BlurFade key={project.name} inView delay={(i % 2) * 0.08}>
+            <div className="nb-card nb-card-lg flex h-full flex-col overflow-hidden">
+              {/* Placeholder art panel — swap for a real screenshot in public/ */}
+              <div
+                className="flex h-[220px] items-center justify-center border-b-2 border-ink bg-peach"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(45deg, rgba(34,28,20,0.05) 0 12px, transparent 12px 24px)",
+                }}
+              >
+                <span className="font-display text-3xl font-extrabold text-orange-ink/70">
+                  {project.name}
+                </span>
               </div>
-              {project.dates && (
-                <p className="mt-2 font-mono text-xs text-faint">{project.dates}</p>
-              )}
-              <p className="mt-4 max-w-3xl leading-relaxed text-muted">
-                {project.description}
-              </p>
-              <p className="mt-5 font-mono text-xs text-faint">
-                {project.tech.join(" · ")}
-              </p>
-            </CardShell>
+              <div className="flex flex-1 flex-col gap-2.5 p-6">
+                <div className="font-mono text-[11.5px] font-semibold text-olive">
+                  {project.meta}
+                </div>
+                <h3 className="font-display text-[28px] font-bold">{project.name}</h3>
+                <p className="text-[14.5px] leading-[1.6]">{project.desc}</p>
+                <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="nb-tag">
+                      {tag}
+                    </span>
+                  ))}
+                  <a
+                    href={project.code}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-auto font-mono text-[11.5px] font-semibold"
+                  >
+                    CODE ↗
+                  </a>
+                </div>
+              </div>
+            </div>
           </BlurFade>
         ))}
+      </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {others.map((project, i) => (
-            <BlurFade key={project.title} inView delay={(i % 2) * 0.08}>
-              <CardShell project={project} className={cardBase}>
-                <CardGlow />
-                {project.image && (
-                  <div className="relative aspect-[16/10] overflow-hidden border-b border-line">
-                    <Image
-                      src={project.image}
-                      alt={`Screenshot of ${project.title}`}
-                      fill
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      className="object-cover object-top transition-transform duration-500
-                      group-hover:scale-[1.02]"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="flex items-center justify-between gap-2 text-lg font-medium text-fg">
-                    {project.title}
-                    {(project.repo ?? project.live) && (
-                      <FiArrowUpRight
-                        aria-hidden="true"
-                        className="shrink-0 text-faint transition-colors group-hover:text-accent"
-                      />
-                    )}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
-                    {project.description}
-                  </p>
-                  <p className="mt-5 font-mono text-xs text-faint">
-                    {project.tech.join(" · ")}
-                  </p>
-                </div>
-              </CardShell>
-            </BlurFade>
+      <BlurFade inView>
+        <div className="nb-card mt-6 px-6 py-2" style={{ boxShadow: "4px 4px 0 var(--color-ink)" }}>
+          <div className="py-3 font-mono text-[11.5px] font-semibold text-faint">
+            EARLIER PROJECTS
+          </div>
+          {earlierProjects.map((project) => (
+            <div
+              key={project.name}
+              className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1 border-t border-dashed border-rule py-2.5"
+            >
+              <span className="min-w-[210px] text-[14.5px] font-semibold">{project.name}</span>
+              <span className="flex-1 text-[13.5px] text-muted">{project.desc}</span>
+              <a
+                href={project.code}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs"
+              >
+                code ↗
+              </a>
+            </div>
           ))}
         </div>
-      </div>
+      </BlurFade>
     </Section>
   );
 };
