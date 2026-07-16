@@ -1,43 +1,58 @@
-import { workExperience } from '@/data'
-import React from 'react'
-import { Button } from './ui/MovingBorders'
+import { FiArrowUpRight } from "react-icons/fi";
+import { BlurFade } from "./ui/blur-fade";
+import { Section } from "./ui/section";
+import { experiences } from "@/data";
 
 const Experience = () => {
   return (
-    <div className="py-20" id="experience">
-        <h1 className="heading">
-            My {" "}
-            <span className="text-purple"> Work Experience</span>
-        </h1>
+    <Section id="experience" eyebrow="Experience" title="Where I've worked">
+      <ol className="relative ml-1.5 space-y-12 border-l border-line pl-8">
+        {experiences.map((role, i) => (
+          <li key={`${role.company}-${role.title}`} className="relative">
+            {/* Node on the timeline edge — current role gets the gold node */}
+            <span
+              aria-hidden="true"
+              className={`absolute -left-[38.5px] top-1.5 h-[9px] w-[9px] rounded-full ${
+                role.current ? "bg-accent" : "bg-edge"
+              }`}
+            />
+            <BlurFade inView delay={i * 0.05}>
+              <p className="font-mono text-xs text-faint">
+                {role.dates}
+                {role.location && ` · ${role.location}`}
+              </p>
+              <h3 className="mt-2 text-lg font-medium text-fg">
+                {role.title}
+                <span className="text-muted">
+                  {" · "}
+                  {role.link ? (
+                    <a
+                      href={role.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-baseline gap-1 transition-colors hover:text-accent"
+                    >
+                      {role.company}
+                      <FiArrowUpRight aria-hidden="true" className="self-center text-xs" />
+                    </a>
+                  ) : (
+                    role.company
+                  )}
+                </span>
+              </h3>
+              <ul className="mt-3 space-y-2">
+                {role.bullets.map((bullet) => (
+                  <li key={bullet.slice(0, 32)} className="leading-relaxed text-muted">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </BlurFade>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+};
 
-        <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
-            {workExperience.map((card) => (
-                <Button 
-                    key={card.id}
-                    duration={Math.floor(Math.random() * 8000) + 15000}
-                    borderRadius='1.75rem'
-                    className="flex-1 text-white border-neutral-200 dark:border-slate-800"
-                >
-                    <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
-                        <img 
-                            src={card.thumbnail}
-                            alt={card.thumbnail}
-                            className="lg:w-32 md:w-20 w-16"
-                        />
-                        <div className="lg:ms-5">
-                            <h1 className="text-start text-xl md:text-2xl font-bold">
-                                {card.title}
-                            </h1>
-                            <p className="text-start text-white-100 mt-3 font-semibold">
-                                {card.desc}
-                            </p>
-                        </div>
-                    </div>
-                </Button>
-            ))}
-        </div>
-    </div>
-  )
-}
-
-export default Experience
+export default Experience;

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./provider";
+import { site } from "@/data";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,10 +14,21 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const serifAccent = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-serif-accent",
+});
 
 export const metadata: Metadata = {
-  title: "Abdulaziz's Portfolio",
-  description: "My Take on Modern Web Dev",
+  title: `${site.name} — ${site.role}`,
+  description: `${site.headline}. ${site.subhead}`,
+  openGraph: {
+    title: `${site.name} — ${site.role}`,
+    description: site.subhead,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -27,16 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${serifAccent.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-            {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

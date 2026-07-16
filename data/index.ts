@@ -1,224 +1,195 @@
-export const navItems = [
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  // { name: "Testimonials", link: "#testimonials" },
-  { name: "Approach", link: "#approach" },
-  { name: "Contact", link: "#contact" },
+// Single source of truth for all site content.
+// Sourced from Abdulaziz's resume (July 2026) + earlier roles kept from LinkedIn.
+
+export const site = {
+  name: "Abdulaziz Khader",
+  firstName: "Abdulaziz",
+  role: "Software Engineer",
+  headline: "I build software that makes algorithms visible",
+  subhead:
+    "Computer Engineering at UC San Diego, building machine-learning systems that ship — from enterprise LLM tooling to models running offline on edge hardware.",
+  motto: "build some. break some more. repeat.",
+  location: "San Diego, CA",
+  email: "akhader@ucsd.edu",
+  resumeUrl: "/resume.pdf",
+  github: "https://github.com/aokhader",
+  linkedin: "https://www.linkedin.com/in/abdulaziz-khader/",
+};
+
+export const navLinks = [
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
-export const gridItems = [
-  {
-    id: 1,
-    title: "I prioritize project development and seamless user experiences",
-    description: "",
-    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
-    titleClassName: "justify-end",
-    img: "/b1.svg",
-    spareImg: "",
-  },
-  {
-    id: 2,
-    title: "I'm very flexible with time zone communications",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
-    imgClassName: "",
-    titleClassName: "justify-start",
-    img: "",
-    spareImg: "",
-  },
-  {
-    id: 3,
-    title: "My main tech stack",
-    description: "I constantly try to improve",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
-    imgClassName: "",
-    titleClassName: "justify-center",
-    img: "",
-    spareImg: "",
-  },
-  {
-    id: 4,
-    title: "Tech enthusiast with a passion for robotics",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    imgClassName: "",
-    titleClassName: "justify-start",
-    img: "/grid.svg",
-    spareImg: "/b4.svg",
-  },
+export type Experience = {
+  company: string;
+  title: string;
+  dates: string;
+  location?: string;
+  current?: boolean;
+  bullets: string[];
+  link?: string;
+};
 
+export const experiences: Experience[] = [
   {
-    id: 5,
-    title: "Currently building a conversational AI Assistant to run on the web",
-    description: "The Inside Scoop",
-    className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
-  },
-  {
-    id: 6,
-    title: "Do you want to start a project together?",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    imgClassName: "",
-    titleClassName: "justify-center md:max-w-full max-w-60 text-center",
-    img: "",
-    spareImg: "",
-  },
-];
-
-export const projects = [
-  {
-    id: 1,
-    title: "Portfolio Website",
-    des: "Created my personal portfolio using React, TailwindCSS, TypeScript, and Framer Motion for the animations.",
-    img: "/portfolio.png",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/fm.svg"],
-    link: "www.github.com/aokhader/aokhader.github.io",
-  },
-  {
-    id: 2,
-    title: "DevJournal - Full-stack Developer Journal",
-    des: "Maintain a journal to track your daily journey, as well as show your tasks and action items in a calendar display.",
-    img: "/DevJournal.png",
-    iconLists: ["/html.svg", "/css.svg", "/js.svg", "/figma.svg"],
-    link: "www.github.com/cse110-sp24-group21/cse110-sp24-group21",
-  },
-  {
-    id: 3,
-    title: "Visual Graph Algorithms",
-    des: "Implemented various graph algorithms such as BFS and SCC using C++ and displayed them on a web browser.",
-    img: "/wg.png",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/cpp.svg"],
-    link: "www.github.com/aokhader/GraphAlgorithms",
-  },
-  {
-    id: 4,
-    title: "YouTubeOffline - YouTube Video Downloader",
-    des: "Download any YouTube video for free using PyTube and MoviePy by providing the link in a text file or directly into the terminal.",
-    img: "/YTOffline.png",
-    iconLists: ["/python.svg", "/datastream.svg"],
-    link: "www.github.com/aokhader/YouTubeOffLine",
-  },
-  {
-    id: 5,
-    title: "Huffman Coding Encryption",
-    des: "Encrypt and compress your files using the Huffman Coding algorithm, and do it using 25% less space for smaller files.",
-    img: "/Huffman.png",
-    iconLists: ["/cpp.svg", "/binary.svg"],
-    link: "www.github.com/aokhader/HuffmanCoding",
-  },
-];
-
-export const testimonials = [
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-];
-
-export const companies = [
-  {
-    id: 1,
-    name: "Product Manager Accelerator",
-    img: "/cloud.svg",
-    nameImg: "/cloudName.svg",
-  },
-  {
-    id: 2,
-    name: "Ocelot",
-    img: "/app.svg",
-    nameImg: "/appName.svg",
-  },
-  {
-    id: 3,
-    name: "Break Through Tech AI at UCLA",
-    img: "/host.svg",
-    nameImg: "/hostName.svg",
-  },
-  {
-    id: 4,
-    name: "University of California - San Diego",
-    img: "/s.svg",
-    nameImg: "/streamName.svg",
-  },
-  {
-    id: 5,
-    name: "docker.",
-    img: "/dock.svg",
-    nameImg: "/dockerName.svg",
-  },
-];
-
-export const workExperience = [
-  {
-    id: 1,
+    company: "BMC Software",
     title: "Software Engineering Intern",
-    desc: "Developing a AI chess coach that analyzes a player's games and discover reoccuring mistakes.",
-    className: "md:col-span-2",
-    thumbnail: "/PMA_2.png",
+    dates: "Jun 2025 — Aug 2025",
+    location: "Santa Clara, CA",
+    bullets: [
+      "Created an AIOps tool that integrates customers' ServiceNow data with BMC's existing products into a universal hub — a 17%+ projected revenue increase and 100,000+ expected new users.",
+      "Used LangChain and LangGraph to process customer databases through CRUD tools over ServiceNow's REST API; hosted and optimized an ASGI web server for 60% faster real-time updates.",
+      "Built a semantic model to dynamically parse data configurations, redesigning 1,000+ lines of code into a tool factory that extends to other products such as Salesforce.",
+    ],
   },
   {
-    id: 2,
+    company: "Product Manager Accelerator",
+    title: "Software Engineering Intern",
+    dates: "Sep 2024 — Dec 2024",
+    location: "Remote",
+    bullets: [
+      "Built a full-stack web app integrating reinforcement learning with a scalable database to evaluate chess games and surface move patterns and historical trends.",
+      "Integrated frontend workflows with Flask REST APIs, LangChain, and Google Gemini for seamless delivery of chess insights, improving analysis response time.",
+      "Deployed a Supabase database of chess positions, cutting duplicate lookups and retrieval latency by 40%.",
+    ],
+    link: "https://github.com/aokhader/chessmate",
+  },
+  {
+    company: "Ocelot",
     title: "AI Studio Fellow",
-    desc: "Creating a chatbot the uses conversational context to cover a range of topics for students.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/ocelot.png",
+    dates: "Aug 2024 — Dec 2024",
+    location: "Remote",
+    bullets: [
+      "Improved tone accuracy 30% over a GPT-2 baseline by building a sentiment-conditioned LLM for student mental-health conversations, scoring 4.1/5.0 on appropriateness in human evaluation.",
+      "Cut a 7B-parameter model's memory footprint from 14 GB to 3.5 GB with 4-bit quantization while preserving 98% model quality, enabling real-time inference on local hardware via Gradio.",
+      "Accelerated the development cycle 82% through CUDA optimization — training from 8 hours down to 30 minutes across 5,600+ multi-domain samples with a stratified evaluation framework.",
+    ],
+    link: "https://github.com/aokhader/OcelotBot",
   },
   {
-    id: 3,
+    company: "Break Through Tech AI at UCLA",
     title: "AI Fellow",
-    desc: "Implemented machine and deep learning models, such as CNNs and ensemble modeling.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/bttai.svg",
+    dates: "2023 — 2024",
+    bullets: [
+      "Implemented machine and deep learning models, including CNNs and ensemble methods, through an industry-partnered AI studio program.",
+    ],
   },
   {
-    id: 4,
+    company: "UC San Diego",
     title: "Instructional Assistant",
-    desc: "Assisted in the instruction and assessment of 800+ students in advanced topics using C.",
-    className: "md:col-span-2",
-    thumbnail: "/UCSD_Seal.png",
+    dates: "2023 — 2024",
+    bullets: [
+      "Assisted in the instruction and assessment of 800+ students in advanced topics using C.",
+    ],
   },
 ];
 
-export const socialMedia = [
+export type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  dates?: string;
+  award?: string;
+  featured?: boolean;
+  repo?: string;
+  live?: string;
+  image?: string;
+};
+
+export const projects: Project[] = [
   {
-    id: 1,
-    img: "/git.svg",
-    link: "https://github.com/aokhader",
+    title: "RoboRanger",
+    award: "Best Edge AI & ElevenLabs Award",
+    featured: true,
+    dates: "Apr 2026 — Present",
+    description:
+      "A fully offline field guide on an Arduino Uno Q: a MobileNetV3 image classifier paired with a quantized SmolLM2-360M LLM and a RAG pipeline over sqlite-vec — everything under 1B parameters on the edge, with an LLM-assisted data curation pipeline and a networked ElevenLabs voice fallback.",
+    tech: ["Python", "C++", "TFLite", "llama.cpp", "RAG"],
+    repo: "https://github.com/aokhader/RoboRanger",
   },
   {
-    id: 2,
-    img: "/link.svg",
-    link: "https://www.linkedin.com/in/abdulaziz-khader/",
+    title: "YouPresent",
+    award: "Presented at AWE XR 2025",
+    featured: true,
+    dates: "Apr 2025 — Feb 2026",
+    description:
+      "A Unity VR app for practicing public speaking: Google Gemini analyzes gaze, hand motion, and delivery in real time, and an AI-driven coach with a rigged, reactive audience turns it into personalized feedback — including recordings with your own speaker avatar.",
+    tech: ["Unity", "C#", "Meta XR", "Google Gemini"],
+  },
+  {
+    title: "Visual Graph Algorithms",
+    description:
+      "Graph algorithms such as BFS and strongly connected components, implemented in C++ and visualized step by step in the browser.",
+    tech: ["C++", "React", "TypeScript"],
+    repo: "https://github.com/aokhader/GraphAlgorithms",
+    image: "/Graphs_2.png",
+  },
+  {
+    title: "DevJournal",
+    description:
+      "Full-stack developer journal for tracking daily progress, with tasks and action items surfaced in a calendar view.",
+    tech: ["JavaScript", "HTML", "CSS", "Figma"],
+    repo: "https://github.com/cse110-sp24-group21/cse110-sp24-group21",
+    image: "/DevJournal.png",
+  },
+  {
+    title: "Huffman Coding Encryption",
+    description:
+      "File compression and encryption with the Huffman coding algorithm — up to 25% less space on smaller files.",
+    tech: ["C++", "Algorithms"],
+    image: "/Huffman.png",
+  },
+  {
+    title: "YouTubeOffline",
+    description:
+      "Command-line YouTube video downloader built with PyTube and MoviePy — pass links in a text file or straight into the terminal.",
+    tech: ["Python", "PyTube", "MoviePy"],
+    repo: "https://github.com/aokhader/YouTubeOffLine",
+    image: "/YTOffline.png",
   },
 ];
+
+export const skillGroups: { label: string; items: string[] }[] = [
+  {
+    label: "Languages",
+    items: ["Python", "C/C++", "C#", "Go", "TypeScript", "JavaScript", "Java", "SQL"],
+  },
+  {
+    label: "ML & LLMs",
+    items: [
+      "PyTorch",
+      "TensorFlow",
+      "Keras",
+      "LangChain",
+      "LangGraph",
+      "CUDA",
+      "NLTK",
+      "spaCy",
+    ],
+  },
+  {
+    label: "Serving & Edge",
+    items: ["llama.cpp", "Ollama", "vLLM", "FastAPI", "TFLite"],
+  },
+  {
+    label: "Web & Infra",
+    items: ["React", "Next.js", "MySQL", "GCP", "Docker", "Puppeteer"],
+  },
+];
+
+export const education = {
+  school: "University of California, San Diego",
+  degree: "B.S. Computer Engineering · Minor in Mathematics",
+  dates: "June 2026 · GPA 3.7/4.0",
+  seal: "/UCSD_Seal.png",
+};
+
+export const about = {
+  paragraphs: [
+    "I'm a computer engineering student at UC San Diego (with a math minor) who likes the moment an abstract model becomes something you can use — a chess coach that explains your blunders, a VR audience that reacts to your talk, a field guide answering questions offline from a microcontroller.",
+    "Most recently that meant a summer at BMC Software building LLM-powered AIOps tooling with LangChain and LangGraph. I care about the whole path from model to product: quantization, retrieval, serving, and the application people actually touch.",
+  ],
+};

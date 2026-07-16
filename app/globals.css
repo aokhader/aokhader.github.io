@@ -1,89 +1,141 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+@theme inline {
+  /* Palette: deep ink navy + warm gold (a quiet nod to UCSD navy & gold) */
+  --color-ink: #0b0f17;
+  --color-surface: #121826;
+  --color-raised: #1a2234;
+  --color-line: #232d42;
+  --color-fg: #e9ecf4;
+  --color-muted: #97a3bb;
+  --color-faint: #5d6a84;
+  --color-accent: #e7b44c;
+  --color-accent-bright: #f5c866;
+  --color-edge: #3d5a8f;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-serif-accent), ui-serif, Georgia, serif;
+}
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+html {
+  scroll-behavior: smooth;
+}
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+body {
+  background-color: var(--color-ink);
+  color: var(--color-fg);
+  /* Reference the next/font variables directly: with @theme inline, --font-sans
+     is only emitted when a font-sans utility appears in markup. */
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
+/* Signature: hero graph edges draw themselves on load */
+@keyframes edge-draw {
+  from {
+    stroke-dashoffset: var(--edge-length, 400);
   }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border !scroll-smooth;
+@keyframes node-in {
+  from {
+    opacity: 0;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-  button {
-    @apply active:outline-none;
+  to {
+    opacity: 1;
   }
 }
 
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
-  }
+.graph-edge {
+  stroke-dasharray: var(--edge-length, 400);
+  stroke-dashoffset: 0;
+  animation: edge-draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  transition:
+    stroke 250ms ease,
+    stroke-opacity 250ms ease,
+    stroke-width 250ms ease;
+}
 
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+.graph-node {
+  animation: node-in 0.8s ease both;
+  transition:
+    fill 250ms ease,
+    r 250ms ease;
+}
+
+/* Gold hub nodes breathe slowly (fill-opacity, so it can't fight node-in). */
+@keyframes node-pulse {
+  0%,
+  100% {
+    fill-opacity: 1;
+  }
+  50% {
+    fill-opacity: 0.5;
+  }
+}
+
+.graph-node-pulse {
+  animation:
+    node-in 0.8s ease both,
+    node-pulse 5s ease-in-out infinite;
+}
+
+/* Spotlight beam sweeping in on load (Aceternity-style) */
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* Conic border shimmer for the Resume button */
+@keyframes border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-spin {
+  animation: border-spin 3s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .graph-edge,
+  .graph-node,
+  .graph-node-pulse,
+  .animate-border-spin {
+    animation: none;
+  }
+  .animate-spotlight {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -40%);
   }
 }
