@@ -2,6 +2,8 @@ import { FiArrowUpRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import { BlurFade } from "./ui/blur-fade";
 import { GraphBg } from "./ui/graph-bg";
 import { Spotlight } from "./ui/spotlight";
+import { TypedLine } from "./ui/typed-line";
+import { WordRotate } from "./ui/word-rotate";
 import { site } from "@/data";
 
 const Hero = () => {
@@ -13,9 +15,10 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-3xl pb-16">
         <BlurFade delay={0.05}>
-          <p className="font-mono text-xs tracking-wide text-faint sm:text-sm">
-            <span className="text-accent">{"//"}</span> {site.motto}
-          </p>
+          <TypedLine
+            text={site.motto}
+            className="font-mono text-xs tracking-wide text-faint sm:text-sm"
+          />
         </BlurFade>
 
         <BlurFade delay={0.15}>
@@ -27,8 +30,19 @@ const Hero = () => {
         <BlurFade delay={0.25}>
           <p className="mt-6 text-2xl leading-snug text-fg/90 sm:text-3xl">
             I build software that makes{" "}
-            <em className="font-serif italic text-accent">algorithms</em>{" "}
-            visible.
+            <WordRotate
+              phrases={[
+                <span key="algorithms">
+                  <em className="font-serif italic text-accent">algorithms</em> visible.
+                </span>,
+                <span key="models">
+                  <em className="font-serif italic text-accent">models</em> useful.
+                </span>,
+                <span key="ideas">
+                  <em className="font-serif italic text-accent">ideas</em> real.
+                </span>,
+              ]}
+            />
           </p>
         </BlurFade>
 

@@ -1,4 +1,6 @@
 import { FiDownload } from "react-icons/fi";
+import { ScrambleText } from "./ui/scramble-text";
+import { ScrollProgress } from "./ui/scroll-progress";
 import { navLinks, site } from "@/data";
 
 const Nav = () => {
@@ -7,7 +9,7 @@ const Nav = () => {
       <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex items-center gap-2.5 font-mono text-sm text-fg">
           <span className="inline-block h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-          aokhader
+          <ScrambleText text="aokhader" />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -41,6 +43,7 @@ const Nav = () => {
           </span>
         </a>
       </nav>
+      <ScrollProgress />
     </header>
   );
 };

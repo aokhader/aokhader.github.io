@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Instrument_Serif } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { site } from "@/data";
 
 const geistSans = localFont({
@@ -41,6 +43,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${serifAccent.variable} antialiased`}
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>
