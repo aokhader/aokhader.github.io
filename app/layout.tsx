@@ -1,22 +1,34 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Figtree } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
-import { ThemeProvider } from "./provider";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { site } from "@/data";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["500", "700", "800"],
+  variable: "--font-bricolage",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
+});
+const figtree = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-figtree",
 });
 
 export const metadata: Metadata = {
-  title: "Abdulaziz's Portfolio",
-  description: "My Take on Modern Web Dev",
+  title: `${site.name} — ${site.role}`,
+  description: site.tagline,
+  openGraph: {
+    title: `${site.name} — ${site.role}`,
+    description: site.tagline,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -27,16 +39,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bricolage.variable} ${plexMono.variable} ${figtree.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-            {children}
-        </ThemeProvider>
+        <SmoothScroll />
+        {children}
       </body>
     </html>
   );

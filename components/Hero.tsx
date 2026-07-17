@@ -1,55 +1,66 @@
-import { FaLocationArrow } from 'react-icons/fa6'
-import MagicButton from './ui/MagicButton'
-import { Spotlight } from './ui/Spotlight'
-import { TextGenerateEffect } from './ui/TextGenerateEffect'
+import { BlurFade } from "./ui/blur-fade";
+import { CopyEmail } from "./ui/copy-email";
+import { Yoyo } from "./ui/yoyo";
+import { site } from "@/data";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
-        <div>
-            <Spotlight className="-top-40 -left-10 
-            md:-left-32 md:-top-20 h-screen" fill="white" />
-            <Spotlight className="top-10 left-full h-[80vh]
-            w=[70vw]" fill="purple" />
-            <Spotlight className="top-28 left-80 h-[80vh] 
-            w-[75vw]" fill="blue" />
+    <header className="mx-auto grid max-w-[1240px] items-start gap-10 px-5 pb-16 pt-12 sm:px-14 md:grid-cols-[1.25fr_1fr]">
+      <BlurFade>
+        <div className="mb-4 font-mono text-[13px] text-olive">{site.heroEyebrow}</div>
+
+        <h1 className="mb-[18px] font-display text-[52px] font-extrabold leading-[0.98] tracking-[-0.02em] sm:text-[64px] md:text-[76px]">
+          Abdulaziz
+          <br />
+          Khader
+        </h1>
+
+        <p className="mb-3.5 max-w-[520px] text-[19px] leading-[1.55]">
+          ML engineer who ships the whole stack — from enterprise AIOps agents at
+          BMC down to a 360M-parameter LLM answering questions{" "}
+          <em>offline on an Arduino</em>.
+        </p>
+
+        <div className="mb-6 font-mono text-[13px] leading-[2] text-muted">
+          ROLE: <span className="font-semibold text-ink">{site.meta.role}</span>
+          <br />
+          EDUCATION: <span className="font-semibold text-ink">{site.meta.education}</span>
+          <br />
+          STATUS: <span className="font-semibold text-olive">{site.meta.status}</span>
         </div>
 
-        <div className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] 
-        bg-grid-black/[0.2] flex items-center justify-center absolute top-0 left-0 ">
-            {/* Radial gradient for the container to give a faded look */}
-            <div className="absolute pointer-events-none inset-0 flex items-center justify-center 
-            dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" /> 
+        <div className="flex flex-wrap items-center gap-3.5">
+          <a
+            href={`mailto:${site.email}`}
+            className="nb-btn nb-btn-lg bg-orange px-5 py-3 text-[14px] text-ink no-underline"
+          >
+            {site.email}
+          </a>
+          <CopyEmail className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink" />
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink no-underline"
+          >
+            GITHUB ↗
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nb-btn nb-press bg-card px-4 py-[11px] text-[13px] text-ink no-underline"
+          >
+            LINKEDIN ↗
+          </a>
         </div>
+      </BlurFade>
 
-        <div className="flex justify-center relative my-20 z-10">
-            <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw]
-            flex flex-col items-center justify-center">
-                <h2 className="uppercase tracking-widest text-xs 
-                text-center text-blue-100 max-w-80">
-                    Build some. Break some more. Repeat.
-                </h2>
-                
-                <TextGenerateEffect 
-                    className="text-center text-[40px] md:text-5xl lg:text-6xl"
-                    words="Transforming Concepts into Complete Software Applications"
-                />
+      <div className="justify-self-center">
+        <Yoyo />
+      </div>
+    </header>
+  );
+};
 
-                <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-                    Hi, I&apos;m Abdulaziz, a determined software engineer with a passion for machine learning and dynamic web applications.
-                </p>
-
-                <a href="#about">
-                    <MagicButton 
-                    title="Show My Work"
-                    icon={<FaLocationArrow />}
-                    position='right'
-                    />
-                </a>
-            </div>
-        </div>
-    </div>
-  )
-}
-
-export default Hero
+export default Hero;

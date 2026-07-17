@@ -1,89 +1,181 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+@theme inline {
+  /* Neubrutalist "Player Two" palette — warm cream, arcade orange, ink brown */
+  --color-cream: #f6efe2;
+  --color-card: #fbf6ea;
+  --color-ink: #221c14;
+  --color-orange: #c96f3b;
+  --color-orange-ink: #8c491a;
+  --color-link: #b25e2c;
+  --color-olive: #6f8a4f;
+  --color-olive-ink: #4d6134;
+  --color-olive-bg: #eef3e2;
+  --color-peach: #f7e9dc;
+  --color-peach-ink: #d8a276;
+  --color-muted: #5d5344;
+  --color-faint: #8a7d68;
+  --color-rule: #d8cdb8;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-body: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Base element styles live in @layer base so Tailwind utilities (text-ink,
+   bg-*, etc.) always win over them — otherwise the unlayered `a { color }`
+   rule would override text-color utilities on links. */
 @layer base {
-  * {
-    @apply border-border !scroll-smooth;
+  html {
+    scroll-behavior: smooth;
   }
+
   body {
-    @apply bg-background text-foreground;
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
-  button {
-    @apply active:outline-none;
+
+  a {
+    color: var(--color-link);
+  }
+  a:hover {
+    color: var(--color-orange-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-orange);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 3px;
   }
 }
 
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
-  }
+/* ---- Neubrutalist building blocks (hard offset shadows, 2px ink borders) ----
+   In @layer components so single-purpose utilities (bg-peach, text-ink) can
+   override them per-element. */
+@layer components {
 
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+.nb-card {
+  border: 2px solid var(--color-ink);
+  border-radius: 14px;
+  background: var(--color-card);
+  box-shadow: 5px 5px 0 var(--color-ink);
+}
+.nb-card-lg {
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+.nb-press {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.nb-press:hover {
+  transform: translate(1px, 1px);
+}
+
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--color-ink);
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 var(--color-ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+.nb-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--color-ink);
+}
+.nb-btn-lg {
+  box-shadow: 4px 4px 0 var(--color-ink);
+}
+.nb-btn-lg:hover {
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+.nb-chip {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: var(--color-card);
+  border: 2px solid var(--color-ink);
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+.nb-metric {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  border: 1.5px solid var(--color-olive);
+  color: var(--color-olive-ink);
+  background: var(--color-olive-bg);
+  border-radius: 8px;
+  padding: 3px 9px;
+}
+
+.nb-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 8px;
+  padding: 3px 9px;
+}
+
+.nb-pill {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 2px solid var(--color-orange);
+  color: var(--color-orange-ink);
+  background: var(--color-peach);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+}
+/* end @layer components */
+
+/* Blinking terminal cursor in the AK_ logo */
+@keyframes blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1.2s steps(1) infinite;
+}
+
+/* Scrolling marquee band */
+@keyframes marq {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marq {
+  animation: marq 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .blink,
+  .marq {
+    animation: none;
   }
 }
