@@ -33,14 +33,16 @@ const Projects = () => {
                       {tag}
                     </span>
                   ))}
-                  <a
-                    href={project.code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto font-mono text-[11.5px] font-semibold"
-                  >
-                    CODE ↗
-                  </a>
+                  {project.code && (
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-auto font-mono text-[11.5px] font-semibold"
+                    >
+                      {project.codeLabel ?? "CODE ↗"}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -60,14 +62,16 @@ const Projects = () => {
             >
               <span className="min-w-[210px] text-[14.5px] font-semibold">{project.name}</span>
               <span className="flex-1 text-[13.5px] text-muted">{project.desc}</span>
-              <a
-                href={project.code}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs"
-              >
-                code ↗
-              </a>
+              {project.code && (
+                <a
+                  href={project.code}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs"
+                >
+                  code ↗
+                </a>
+              )}
             </div>
           ))}
         </div>

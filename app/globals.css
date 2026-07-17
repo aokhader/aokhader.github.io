@@ -22,37 +22,45 @@
   --font-body: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Base element styles live in @layer base so Tailwind utilities (text-ink,
+   bg-*, etc.) always win over them — otherwise the unlayered `a { color }`
+   rule would override text-color utilities on links. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-link);
+  }
+  a:hover {
+    color: var(--color-orange-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-orange);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
 }
 
-body {
-  margin: 0;
-  background-color: var(--color-cream);
-  color: var(--color-ink);
-  font-family: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: var(--color-link);
-}
-a:hover {
-  color: var(--color-orange-ink);
-}
-
-::selection {
-  background-color: var(--color-orange);
-  color: var(--color-cream);
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-orange);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-/* ---- Neubrutalist building blocks (hard offset shadows, 2px ink borders) ---- */
+/* ---- Neubrutalist building blocks (hard offset shadows, 2px ink borders) ----
+   In @layer components so single-purpose utilities (bg-peach, text-ink) can
+   override them per-element. */
+@layer components {
 
 .nb-card {
   border: 2px solid var(--color-ink);
@@ -133,6 +141,9 @@ a:hover {
   border-radius: 999px;
   padding: 6px 14px;
 }
+
+}
+/* end @layer components */
 
 /* Blinking terminal cursor in the AK_ logo */
 @keyframes blink {

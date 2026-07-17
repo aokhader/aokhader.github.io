@@ -104,8 +104,9 @@ export function Yoyo() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-xs text-faint">
-        ← drag the yo-yo. it&apos;s real physics. i also do this with an actual one.
+      <div className="absolute bottom-2 left-1/2 w-56 -translate-x-1/2 text-center font-mono text-xs leading-relaxed text-faint">
+        <span className="block text-lg leading-none">↑</span>
+        drag the yo-yo. it&apos;s real physics. i also do this with an actual one.
       </div>
     </div>
   );

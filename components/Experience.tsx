@@ -1,6 +1,6 @@
 import { BlurFade } from "./ui/blur-fade";
 import { Section } from "./ui/section";
-import { experiences } from "@/data";
+import { alsoRoles, experiences } from "@/data";
 
 const Experience = () => {
   return (
@@ -28,6 +28,22 @@ const Experience = () => {
           </BlurFade>
         ))}
       </div>
+
+      <BlurFade inView>
+        <div className="nb-card mt-6 px-6 py-2" style={{ boxShadow: "4px 4px 0 var(--color-ink)" }}>
+          <div className="py-3 font-mono text-[11.5px] font-semibold text-faint">ALSO</div>
+          {alsoRoles.map((role) => (
+            <div
+              key={role.company}
+              className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1 border-t border-dashed border-rule py-2.5"
+            >
+              <span className="min-w-[210px] text-[14.5px] font-semibold">{role.company}</span>
+              <span className="flex-1 text-[13.5px] text-muted">{role.title}</span>
+              <span className="font-mono text-xs text-faint">{role.dates}</span>
+            </div>
+          ))}
+        </div>
+      </BlurFade>
     </Section>
   );
 };

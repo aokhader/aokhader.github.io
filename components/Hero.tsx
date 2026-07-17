@@ -32,7 +32,7 @@ const Hero = () => {
         <div className="flex flex-wrap items-center gap-3.5">
           <a
             href={`mailto:${site.email}`}
-            className="nb-btn nb-btn-lg bg-orange px-5 py-3 text-[14px] text-cream no-underline"
+            className="nb-btn nb-btn-lg bg-orange px-5 py-3 text-[14px] text-ink no-underline"
           >
             {site.email}
           </a>
