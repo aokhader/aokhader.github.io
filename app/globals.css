@@ -167,7 +167,11 @@
   }
 }
 .marq {
-  animation: marq 20s linear infinite;
+  /* SPEED KNOB: seconds for one whole group to slide past — bigger = slower.
+     This is a duration, not a rate, so it's tied to how wide a group is: if you
+     edit site.marquee or REPEATS in Marquee.tsx, scale this to match or the
+     speed shifts. At ~2955px per group, 90s ≈ 33px/sec. */
+  animation: marq 90s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
