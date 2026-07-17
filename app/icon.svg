@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Yo-yo">
+  <title>Yo-yo</title>
+  <!-- Mirrors the hero yo-yo: orange body, ink rim, cream face, orange string
+       catch, dark axle. Strokes are thickened vs. the DOM version so the mark
+       still reads at 16px. -->
+  <circle cx="50" cy="50" r="47" fill="#c96f3b" stroke="#221c14" stroke-width="5" />
+  <circle cx="50" cy="50" r="31" fill="#f6efe2" stroke="#221c14" stroke-width="4" />
+  <circle cx="50" cy="29" r="4.5" fill="#c96f3b" />
+  <circle cx="50" cy="50" r="11" fill="#221c14" />
+</svg>
