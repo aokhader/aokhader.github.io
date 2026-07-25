@@ -9,7 +9,7 @@ export const site = {
   heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN DIEGO, CA",
   location: "San Diego, CA",
   email: "akhader@ucsd.edu",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Abdulaziz_Software_Engineer.pdf",
   github: "https://github.com/aokhader",
   linkedin: "https://www.linkedin.com/in/abdulaziz-khader/",
   meta: {
