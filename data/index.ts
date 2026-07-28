@@ -14,7 +14,7 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/abdulaziz-khader/",
   meta: {
     role: "ML / Full-stack Engineer",
-    education: "UC San Diego — B.S. Computer Engineering '26, math minor · 3.7 GPA",
+    education: "UC San Diego — B.S. Computer Engineering '26, math minor",
     status: "OPEN TO NEW-GRAD SWE / ML ROLES",
   },
   marquee: "BUILD SOME ★ BREAK SOME MORE ★ REPEAT ★ CLOUD TO ARDUINO ★ SHIP IT ★",

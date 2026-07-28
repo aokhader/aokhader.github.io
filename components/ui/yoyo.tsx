@@ -47,7 +47,17 @@ export function Yoyo() {
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
 
-    const tick = () => {
+    // Fixed-timestep integration so the motion runs at the same real-world speed
+    // on any display. requestAnimationFrame fires once per refresh — 60 Hz on a
+    // typical laptop but 120/144 Hz on high-refresh screens — so advancing the
+    // physics a fixed amount per *frame* would make it oscillate ~2x faster on a
+    // fast display. Instead we accumulate elapsed time and step the sim in fixed
+    // 1/60 s slices, which reproduces the original 60 Hz feel everywhere.
+    const STEP = 1000 / 60;
+    let last = performance.now();
+    let acc = 0;
+
+    const step = () => {
       if (!dragging.current) {
         av += -0.0035 * Math.sin(a);
         av *= 0.996;
@@ -55,6 +65,17 @@ export function Yoyo() {
         len += (nat - len) * 0.06;
       }
       spin += 2 + av * 420;
+    };
+
+    const tick = (now: number) => {
+      // Clamp long gaps (e.g. returning from a backgrounded tab) so we don't run
+      // a huge burst of catch-up steps.
+      acc += Math.min(now - last, 250);
+      last = now;
+      while (acc >= STEP) {
+        step();
+        acc -= STEP;
+      }
       stringEl.style.transform = `rotate(${-a}rad)`;
       stringEl.style.height = `${len}px`;
       const x = Math.sin(a) * len;
