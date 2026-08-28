@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BlurFade } from "./ui/blur-fade";
 import { Section } from "./ui/section";
 import { earlierProjects, featuredProjects } from "@/data";
@@ -9,18 +10,31 @@ const Projects = () => {
         {featuredProjects.map((project, i) => (
           <BlurFade key={project.name} inView delay={(i % 2) * 0.08}>
             <div className="nb-card nb-card-lg flex h-full flex-col overflow-hidden">
-              {/* Placeholder art panel — swap for a real screenshot in public/ */}
-              <div
-                className="flex h-[220px] items-center justify-center border-b-2 border-ink bg-peach"
-                style={{
-                  backgroundImage:
-                    "repeating-linear-gradient(45deg, rgba(34,28,20,0.05) 0 12px, transparent 12px 24px)",
-                }}
-              >
-                <span className="font-display text-3xl font-extrabold text-orange-ink/70">
-                  {project.name}
-                </span>
-              </div>
+              {/* Screenshot when the project has one, tiled name panel otherwise. */}
+              {project.image ? (
+                <div className="relative aspect-[3/2] border-b-2 border-ink bg-peach">
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} project screenshot`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                    priority={i < 2}
+                  />
+                </div>
+              ) : (
+                <div
+                  className="flex aspect-[3/2] items-center justify-center border-b-2 border-ink bg-peach"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(45deg, rgba(34,28,20,0.05) 0 12px, transparent 12px 24px)",
+                  }}
+                >
+                  <span className="font-display text-3xl font-extrabold text-orange-ink/70">
+                    {project.name}
+                  </span>
+                </div>
+              )}
               <div className="flex flex-1 flex-col gap-2.5 p-6">
                 <div className="font-mono text-[11.5px] font-semibold text-olive">
                   {project.meta}

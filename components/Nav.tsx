@@ -17,7 +17,7 @@ const Nav = () => {
 
       <a
         href={site.resumeUrl}
-        download
+        download={site.resumeFilename}
         className="nb-btn nb-press bg-card px-3.5 py-2 text-ink no-underline"
       >
         RESUME.PDF ↓

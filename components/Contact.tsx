@@ -23,7 +23,7 @@ const Contact = () => {
           </a>
           <div className="mt-7 flex flex-wrap gap-3.5">
             <CopyEmail className="inline-flex items-center rounded-[10px] border-2 border-cream bg-orange px-[18px] py-[11px] font-mono text-[13px] font-semibold text-ink transition-colors hover:bg-peach-ink" />
-            <a href={site.resumeUrl} download className={darkBtn}>
+            <a href={site.resumeUrl} download={site.resumeFilename} className={darkBtn}>
               RESUME.PDF ↓
             </a>
             <a href={site.github} target="_blank" rel="noopener noreferrer" className={darkBtn}>

@@ -9,7 +9,9 @@ export const site = {
   heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN DIEGO, CA",
   location: "San Diego, CA",
   email: "akhader@ucsd.edu",
-  resumeUrl: "/Abdulaziz_Software_Engineer.pdf",
+  resumeUrl: "/resume.pdf",
+  /** Name the browser saves the resume under, rather than the generic "resume.pdf". */
+  resumeFilename: "Abdulaziz_Khader_Resume.pdf",
   github: "https://github.com/aokhader",
   linkedin: "https://www.linkedin.com/in/abdulaziz-khader/",
   meta: {
@@ -113,6 +115,8 @@ export type Project = {
   meta: string;
   desc: string;
   tags: string[];
+  /** Screenshot under public/projects — falls back to the tiled name panel when absent. */
+  image?: string;
   code?: string;
   /** Overrides the default "CODE ↗" link label (e.g. a PR rather than a repo). */
   codeLabel?: string;
@@ -124,6 +128,7 @@ export const featuredProjects: Project[] = [
     meta: "APR — MAY 2026 · ★ BEST EDGE AI + BEST ELEVENLABS · DATAHACKS 2026",
     desc: "An edge AI wildlife identification robot on an Arduino Uno Q: a MobileNetV3-Large TFLite classifier (75%+ accuracy across 51 species, calibrated with temperature scaling and TTA) paired with a quantized SmolLM2-360M via llama.cpp for fully offline inference. RAG over sqlite-vec with cosine-similarity thresholding gates hallucinations, and a networked mode streams to an ElevenLabs agent for conversational narration. Won against 100+ teams.",
     tags: ["Python", "C++", "TFLite", "llama.cpp"],
+    image: "/projects/roboranger.jpg",
     code: "https://github.com/aokhader/RoboRanger",
   },
   {
@@ -131,6 +136,7 @@ export const featuredProjects: Project[] = [
     meta: "MAY — JUN 2026 · ★ MERGED INTO THE OFFICIAL DONKEYCAR",
     desc: "A 5-state Extended Kalman Filter fusing Adafruit BNO08X IMU data with u-blox C099-F9P GPS to eliminate dead-reckoning drift on a self-driving car. Refactored the vehicle's sensor pipeline into vectorized tuples and built backward-compatibility layers so legacy MPU6050/9250 sensors route into the new EKF without crashing the vehicle loop. Shipped upstream into DonkeyCar, the open-source self-driving platform.",
     tags: ["Python", "ROS", "Keras", "Embedded"],
+    image: "/projects/gps-imu-fusion.jpg",
     code: "https://github.com/autorope/donkeycar/pull/1237",
     codeLabel: "VIEW PR ↗",
   },
@@ -146,6 +152,7 @@ export const featuredProjects: Project[] = [
     meta: "OCT 2025 — FEB 2026 · ★ PLAYER'S CHOICE · TRITONWARE GAMEJAM",
     desc: "A 2D rogue-like dungeon crawler built in Unity around a vision-loss mechanic, with a storyline about discovering yourself and regaining your sight. Designed multiple levels and enemy types, and showcased it against 30+ teams at the TritonWare GameJam.",
     tags: ["Unity", "C#", "Game Design"],
+    image: "/projects/open-your-eyes.jpg",
     code: "https://github.com/aokhader/OpenYourEyes",
   },
 ];
