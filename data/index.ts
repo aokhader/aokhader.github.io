@@ -125,13 +125,6 @@ export type Project = {
 export const featuredProjects: Project[] = [
   // Drop screenshots at public/projects/remem.jpg and ringdown.jpg to take these two off the tiled panel.
   {
-    name: "Remem",
-    meta: "OCT 2026 · ★ BEST OVERALL PROJECT · DS3 HACK DAY",
-    desc: "A wearable visual-memory search engine: a forehead-worn iPhone streams JPEG frames to a laptop, where EmbeddingGemma 2 embeds every frame and every question into one 768-dimensional space, so asking where your keys are returns the newest frame they appear in and how long ago it was seen. Capture through ingest was mine — live frames, ffmpeg MP4 replay, and EXIF-dated camera-roll imports landing in one JPEG-plus-SQLite store behind a bounded queue that drops the oldest frame, never the newest. Every frame is indexed and searched on the laptop: no cloud APIs, no audio recorded.",
-    tags: ["Python", "FastAPI", "EmbeddingGemma", "SQLite"],
-    code: "https://github.com/aokhader/Remem",
-  },
-  {
     name: "RingDown",
     meta: "OCT 2026 · ★ 2ND PLACE · C0MPILED-16",
     desc: "A voice-driven ambulance routing system that cuts hospital offload delays: a paramedic speaks a patient report into a handset, faster-whisper transcribes and spaCy redacts names, addresses and birth dates on the laptop, and only redacted text reaches the decision model, whose confidence bands route each report to act, one clarifying question, or a human hand-off. Hospital choice stays in plain code — capability filter, Mapbox drive time, and expected wait counting ambulances already headed there — before Twilio phones the charge nurse with a spoken heads-up. Across 48 scripted reports it handled 79% alone at 100% accuracy and a 605 ms median. I built the voice path and the medic handset.",
@@ -140,6 +133,14 @@ export const featuredProjects: Project[] = [
     // Links to the demo video rather than the repo, which is private.
     code: "https://drive.google.com/file/d/1InQrpE9ljma-7VNy7mG2wxkSuteOlyAm/view",
     codeLabel: "DEMO VIDEO ↗",
+  },
+  {
+    name: "Remem",
+    meta: "OCT 2026 · ★ BEST OVERALL PROJECT · DS3 HACK DAY",
+    desc: "A wearable visual-memory search engine: a forehead-worn iPhone streams JPEG frames to a laptop, where EmbeddingGemma 2 embeds every frame and every question into one 768-dimensional space, so asking where your keys are returns the newest frame they appear in and how long ago it was seen. Capture through ingest was mine — live frames, ffmpeg MP4 replay, and EXIF-dated camera-roll imports landing in one JPEG-plus-SQLite store behind a bounded queue that drops the oldest frame, never the newest. Every frame is indexed and searched on the laptop: no cloud APIs, no audio recorded.",
+    tags: ["Python", "FastAPI", "EmbeddingGemma", "SQLite"],
+    image: "/projects/remem.png",
+    code: "https://github.com/aokhader/Remem",
   },
   {
     name: "Building Blocks",
