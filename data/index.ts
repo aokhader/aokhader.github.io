@@ -136,6 +136,7 @@ export const featuredProjects: Project[] = [
     meta: "OCT 2026 · ★ 2ND PLACE · C0MPILED-16",
     desc: "A voice-driven ambulance routing system that cuts hospital offload delays: a paramedic speaks a patient report into a handset, faster-whisper transcribes and spaCy redacts names, addresses and birth dates on the laptop, and only redacted text reaches the decision model, whose confidence bands route each report to act, one clarifying question, or a human hand-off. Hospital choice stays in plain code — capability filter, Mapbox drive time, and expected wait counting ambulances already headed there — before Twilio phones the charge nurse with a spoken heads-up. Across 48 scripted reports it handled 79% alone at 100% accuracy and a 605 ms median. I built the voice path and the medic handset.",
     tags: ["Python", "FastAPI", "Whisper", "Twilio"],
+    image: "/projects/ringdown.png",
     // Links to the demo video rather than the repo, which is private.
     code: "https://drive.google.com/file/d/1InQrpE9ljma-7VNy7mG2wxkSuteOlyAm/view",
     codeLabel: "DEMO VIDEO ↗",
