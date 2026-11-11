@@ -6,8 +6,8 @@ export const site = {
   role: "ML / Full-stack Engineer",
   tagline:
     "ML engineer who ships the whole stack — from enterprise AIOps agents at BMC down to a 360M-parameter LLM answering questions offline on an Arduino.",
-  heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN DIEGO, CA",
-  location: "San Diego, CA",
+  heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN JOSE, CA",
+  location: "San Jose, CA",
   email: "akhader@ucsd.edu",
   resumeUrl: "/Abdulaziz_Software_Engineer.pdf",
   /** Name the browser saves the resume under, rather than the generic "resume.pdf". */
