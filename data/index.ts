@@ -127,14 +127,14 @@ export const featuredProjects: Project[] = [
   {
     name: "Remem",
     meta: "OCT 2026 · ★ BEST OVERALL PROJECT · DS3 HACK DAY",
-    desc: "Ask where your keys are and Remem answers with the last frame your glasses saw them in. A forehead-worn iPhone streams JPEG frames to a laptop, where EmbeddingGemma 2 embeds every frame and every question into one 768-dimensional space and a second phone gets back the newest match with how long ago it was seen. I owned capture through ingest: live frames, ffmpeg MP4 replay, and EXIF-dated camera-roll imports landing in one JPEG-plus-SQLite store behind a bounded queue that drops the oldest frame, never the newest. Every frame is indexed and searched on the laptop — no cloud APIs, no audio recorded.",
+    desc: "A wearable visual-memory search engine: a forehead-worn iPhone streams JPEG frames to a laptop, where EmbeddingGemma 2 embeds every frame and every question into one 768-dimensional space, so asking where your keys are returns the newest frame they appear in and how long ago it was seen. Capture through ingest was mine — live frames, ffmpeg MP4 replay, and EXIF-dated camera-roll imports landing in one JPEG-plus-SQLite store behind a bounded queue that drops the oldest frame, never the newest. Every frame is indexed and searched on the laptop: no cloud APIs, no audio recorded.",
     tags: ["Python", "FastAPI", "EmbeddingGemma", "SQLite"],
     code: "https://github.com/aokhader/Remem",
   },
   {
     name: "RingDown",
     meta: "OCT 2026 · ★ 2ND PLACE · C0MPILED-16",
-    desc: "A paramedic speaks a patient report into a handset and RingDown names the hospital that can treat them soonest — counting ambulances already headed there — then phones that hospital's charge nurse with a spoken heads-up. faster-whisper transcribes and spaCy redacts names, addresses and birth dates on the laptop, so only redacted text ever reaches the decision model, and confidence bands route each report to act, one clarifying question, or a human hand-off. Hospital choice stays in plain code: capability filter, Mapbox drive time, expected wait. Across 48 scripted reports it handled 79% alone at 100% accuracy and a 605 ms median. I built the voice path and the medic handset.",
+    desc: "A voice-driven ambulance routing system that cuts hospital offload delays: a paramedic speaks a patient report into a handset, faster-whisper transcribes and spaCy redacts names, addresses and birth dates on the laptop, and only redacted text reaches the decision model, whose confidence bands route each report to act, one clarifying question, or a human hand-off. Hospital choice stays in plain code — capability filter, Mapbox drive time, and expected wait counting ambulances already headed there — before Twilio phones the charge nurse with a spoken heads-up. Across 48 scripted reports it handled 79% alone at 100% accuracy and a 605 ms median. I built the voice path and the medic handset.",
     tags: ["Python", "FastAPI", "Whisper", "Twilio"],
     // Links to the demo video rather than the repo, which is private.
     code: "https://drive.google.com/file/d/1InQrpE9ljma-7VNy7mG2wxkSuteOlyAm/view",
@@ -143,7 +143,7 @@ export const featuredProjects: Project[] = [
   {
     name: "Building Blocks",
     meta: "SEP — NOV 2026 · REAL-TIME COLLABORATIVE CANVAS",
-    desc: "Describe a system in plain English and an AI agent lays it out as nodes and edges on a shared canvas, collaborators drag it into shape, and the finished graph compiles into a persisted Markdown technical spec. React Flow over Liveblocks gives live cursors, presence and multiplayer editing; generation runs as a durable Trigger.dev background task so a long agent call survives a reload; Clerk handles auth and Prisma over Postgres holds projects, collaborators and specs. Ships with a starter library of monolith, microservice, event-driven and serverless templates.",
+    desc: "A real-time collaborative workspace for system design: React Flow over Liveblocks gives a shared canvas with live cursors, presence and multiplayer editing, and an AI agent turns a plain-English prompt into nodes and edges written straight into the room. Generation runs as a durable Trigger.dev background task so a long agent call survives a reload, Clerk handles auth, and Prisma over Postgres holds projects, collaborators and the Markdown specs the finished graph compiles into. Ships with a starter library of monolith, microservice, event-driven and serverless templates.",
     tags: ["Trigger.dev", "Clerk", "Liveblocks", "Prisma"],
     image: "/projects/building-blocks.png",
     code: "https://github.com/aokhader/BuildingBlocks",
@@ -164,6 +164,13 @@ export const featuredProjects: Project[] = [
     image: "/projects/gps-imu-fusion.jpg",
     code: "https://github.com/autorope/donkeycar/pull/1237",
     codeLabel: "VIEW PR ↗",
+  },
+  {
+    name: "YouPresent",
+    meta: "APR 2025 — FEB 2026 · DEMOED AT AWE XR 2025",
+    desc: "A Unity VR project for building public-speaking confidence by simulating a conference stage. Google Gemini reads the presenter's gaze and hand motions to generate coaching feedback, an Adobe Mixamo audience applauds at the end, and a recording camera lets you rewatch yourself as your own avatar from the audience's seat.",
+    tags: ["Unity", "C#", "Meta XR", "Gemini"],
+    code: "https://github.com/UnityVRProjects/YouPresent",
   },
 ];
 
@@ -188,11 +195,6 @@ export const earlierProjects: EarlierProject[] = [
     name: "BTTAI AJL Kaggle",
     desc: "ViT16 fine-tuned on HAM1000 for equitable skin-cancer detection — 12/75 on the leaderboard",
     code: "https://github.com/aokhader/ucla_ajl_team2",
-  },
-  {
-    name: "YouPresent",
-    desc: "Unity VR public-speaking trainer — Gemini reads gaze and hand motion for coaching feedback; demoed at AWE XR 2025",
-    code: "https://github.com/UnityVRProjects/YouPresent",
   },
   {
     name: "Open Your Eyes",
