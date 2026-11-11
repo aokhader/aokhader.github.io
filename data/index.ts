@@ -9,7 +9,7 @@ export const site = {
   heroEyebrow: "// PLAYER 2 HAS ENTERED THE CHAT · SAN DIEGO, CA",
   location: "San Diego, CA",
   email: "akhader@ucsd.edu",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Abdulaziz_Software_Engineer.pdf",
   /** Name the browser saves the resume under, rather than the generic "resume.pdf". */
   resumeFilename: "Abdulaziz_Khader_Resume.pdf",
   github: "https://github.com/aokhader",
@@ -123,6 +123,31 @@ export type Project = {
 };
 
 export const featuredProjects: Project[] = [
+  // Drop screenshots at public/projects/remem.jpg and ringdown.jpg to take these two off the tiled panel.
+  {
+    name: "Remem",
+    meta: "OCT 2026 · ★ BEST OVERALL PROJECT · DS3 HACK DAY",
+    desc: "Ask where your keys are and Remem answers with the last frame your glasses saw them in. A forehead-worn iPhone streams JPEG frames to a laptop, where EmbeddingGemma 2 embeds every frame and every question into one 768-dimensional space and a second phone gets back the newest match with how long ago it was seen. I owned capture through ingest: live frames, ffmpeg MP4 replay, and EXIF-dated camera-roll imports landing in one JPEG-plus-SQLite store behind a bounded queue that drops the oldest frame, never the newest. Every frame is indexed and searched on the laptop — no cloud APIs, no audio recorded.",
+    tags: ["Python", "FastAPI", "EmbeddingGemma", "SQLite"],
+    code: "https://github.com/aokhader/Remem",
+  },
+  {
+    name: "RingDown",
+    meta: "OCT 2026 · ★ 2ND PLACE · C0MPILED-16",
+    desc: "A paramedic speaks a patient report into a handset and RingDown names the hospital that can treat them soonest — counting ambulances already headed there — then phones that hospital's charge nurse with a spoken heads-up. faster-whisper transcribes and spaCy redacts names, addresses and birth dates on the laptop, so only redacted text ever reaches the decision model, and confidence bands route each report to act, one clarifying question, or a human hand-off. Hospital choice stays in plain code: capability filter, Mapbox drive time, expected wait. Across 48 scripted reports it handled 79% alone at 100% accuracy and a 605 ms median. I built the voice path and the medic handset.",
+    tags: ["Python", "FastAPI", "Whisper", "Twilio"],
+    // Links to the demo video rather than the repo, which is private.
+    code: "https://drive.google.com/file/d/1InQrpE9ljma-7VNy7mG2wxkSuteOlyAm/view",
+    codeLabel: "DEMO VIDEO ↗",
+  },
+  {
+    name: "Building Blocks",
+    meta: "SEP — NOV 2026 · REAL-TIME COLLABORATIVE CANVAS",
+    desc: "Describe a system in plain English and an AI agent lays it out as nodes and edges on a shared canvas, collaborators drag it into shape, and the finished graph compiles into a persisted Markdown technical spec. React Flow over Liveblocks gives live cursors, presence and multiplayer editing; generation runs as a durable Trigger.dev background task so a long agent call survives a reload; Clerk handles auth and Prisma over Postgres holds projects, collaborators and specs. Ships with a starter library of monolith, microservice, event-driven and serverless templates.",
+    tags: ["Trigger.dev", "Clerk", "Liveblocks", "Prisma"],
+    image: "/projects/building-blocks.png",
+    code: "https://github.com/aokhader/BuildingBlocks",
+  },
   {
     name: "RoboRanger",
     meta: "APR — MAY 2026 · ★ BEST EDGE AI + BEST ELEVENLABS · DATAHACKS 2026",
@@ -139,21 +164,6 @@ export const featuredProjects: Project[] = [
     image: "/projects/gps-imu-fusion.jpg",
     code: "https://github.com/autorope/donkeycar/pull/1237",
     codeLabel: "VIEW PR ↗",
-  },
-  {
-    name: "YouPresent",
-    meta: "APR 2025 — FEB 2026 · DEMOED AT AWE XR 2025",
-    desc: "A Unity VR project for building public-speaking confidence by simulating a conference stage. Google Gemini reads the presenter's gaze and hand motions to generate coaching feedback, an Adobe Mixamo audience applauds at the end, and a recording camera lets you rewatch yourself as your own avatar from the audience's seat.",
-    tags: ["Unity", "C#", "Meta XR", "Gemini"],
-    code: "https://github.com/UnityVRProjects/YouPresent",
-  },
-  {
-    name: "Open Your Eyes",
-    meta: "OCT 2025 — FEB 2026 · ★ PLAYER'S CHOICE · TRITONWARE GAMEJAM",
-    desc: "A 2D rogue-like dungeon crawler built in Unity around a vision-loss mechanic, with a storyline about discovering yourself and regaining your sight. Designed multiple levels and enemy types, and showcased it against 30+ teams at the TritonWare GameJam.",
-    tags: ["Unity", "C#", "Game Design"],
-    image: "/projects/open-your-eyes.jpg",
-    code: "https://github.com/aokhader/OpenYourEyes",
   },
 ];
 
@@ -178,6 +188,16 @@ export const earlierProjects: EarlierProject[] = [
     name: "BTTAI AJL Kaggle",
     desc: "ViT16 fine-tuned on HAM1000 for equitable skin-cancer detection — 12/75 on the leaderboard",
     code: "https://github.com/aokhader/ucla_ajl_team2",
+  },
+  {
+    name: "YouPresent",
+    desc: "Unity VR public-speaking trainer — Gemini reads gaze and hand motion for coaching feedback; demoed at AWE XR 2025",
+    code: "https://github.com/UnityVRProjects/YouPresent",
+  },
+  {
+    name: "Open Your Eyes",
+    desc: "2D rogue-like dungeon crawler built around a vision-loss mechanic — Player's Choice at TritonWare GameJam",
+    code: "https://github.com/aokhader/OpenYourEyes",
   },
   {
     name: "YouTubeOffline",
@@ -240,6 +260,8 @@ export const offHours: OffHour[] = [
 ];
 
 export const achievements = [
+  "★ Best Overall Project — DS3 Hack Day",
+  "★ 2nd Place — c0mpiled-16",
   "★ Best Edge AI & ElevenLabs — DataHacks 2026",
   "★ Player's Choice — TritonWare GameJam",
   "★ Demoed at AWE XR 2025",
